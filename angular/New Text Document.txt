@@ -1,0 +1,7 @@
+angular forms
+1- template driven  form in registeration component
+2- reactive form in sign in
+3-custom validation in  reactive form
+4-simulation of  calling api with service
+5-Routing in Angular(SPA)Single Page Application
+6-going from component to the same component with different id 
