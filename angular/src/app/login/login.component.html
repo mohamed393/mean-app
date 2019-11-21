@@ -1,20 +1,22 @@
-<form #f="ngForm" (ngSubmit)="onSignIn(f.value)">
-    <div *ngIf="isNotValid" class="alert alert-danger">Invalid Username Or Password</div>
-    <div class="form-group">
-        <label>Email</label>
-        <div class="input-group">
-            <input type="email" ngModel #username="ngModel" name="email" class="form-control" />
-        </div>
+<!--Here we will work Reactive form -->
+<div *ngIf="isnotvalid" class="alert alert-danger">Invalid Email or password</div>
+<form class="login" [formGroup]="form" (ngSubmit)="form.valid? onsubmit(form.value) :null">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1"
+      aria-describedby="emailHelp" placeholder="Enter email">
+    <div *ngIf="email.invalid && email.touched" class="alert alert-danger">
+      <div *ngIf="email.errors.required">Email is Required</div>
+      <div *ngIf="email.errors.space">Email has Space</div>
     </div>
-
-
-    <div class="form-group">
-        <label>password</label>
-        <div class="input-group">
-            <input type="password" ngModel #username="ngModel" name="password" class="form-control" />
-        </div>
-
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1"
+      placeholder="Password">
+    <div *ngIf="password.invalid && password.touched" class="alert alert-danger">
+      <div *ngIf="password.errors.required">Password is Required</div>
     </div>
-    <input type="submit" class="btn btn-primary" value="Sign In">
-
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
 </form>

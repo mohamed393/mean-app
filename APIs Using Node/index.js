@@ -23,7 +23,7 @@ app.use('/api/product', productRouter);
 app.use('/api/category', categoryRouter);
 
 
-mongoose.connect('mongodb://localhost/Oshope', { useNewUrlParser: true })
+mongoose.connect('mongodb://localhost/myshope', { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => { console.log('database server connected') })
     .catch((error) => { console.log(error.message) });
 

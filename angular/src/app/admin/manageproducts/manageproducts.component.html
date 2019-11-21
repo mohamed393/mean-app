@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <a routerLink="/admin/manage/newcategory" class="btn btn-primary">
+                New Category
+            </a>
+        </div>
+        <div class="col">
+            <a routerLink="/admin/manage/newproduct" class="btn btn-primary">
+                New Product
+            </a>
+        </div>
+    </div> <br>
+    <p>
+        <input #query (keyup)="filter(query.value)" type="text" class="form-control" placeholder="Search">
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Price</th>
+                <th></th>
+                <th></th>
+
+            </tr>
+        </thead>
+        <tr *ngFor="let p of fiteredProducts">
+            <td>{{p.name}}</td>
+            <td>{{p.price |currency}}</td>
+            <td>
+                <a [routerLink]="['/admin/manage/newproduct',p._id]">Update</a>
+            </td>
+            <td><a (click)="deletepro(p)"><i style="cursor: pointer" class="far fa-trash-alt"></i>
+
+                </a></td>
+
+        </tr>
+    </table>
+</div>

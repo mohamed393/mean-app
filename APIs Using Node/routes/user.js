@@ -6,12 +6,17 @@ const authmiddleware = require('../middleware/authmiddleware');
 const router = express.Router();
 router.post('/', async (req, res) => {
     // this if condition to sure that the email do not repeated again
-    let newUser = await User.findOne({ email: req.body.email })
-    if (newUser) {
-        res.status(400).send('User already Exists')
-    } else {
+    let emailuser = await User.findOne({ email: req.body.email })
+    let username = await User.findOne({ name: req.body.name })
+    if (emailuser) {
+        res.status(400).send({ message: 'email already Exists' })
+    } else if (username) {
+        res.status(400).send({ message: 'Username already Exists' })
+    }
+    else {
         newUser = new User({
             name: req.body.name
+            , gender: req.body.gender
             , email: req.body.email
             , password: req.body.password
             , isAdmin: req.body.isAdmin
@@ -20,7 +25,7 @@ router.post('/', async (req, res) => {
         newUser.password = hashPassword
         const savedUser = await newUser.save();
         const token = newUser.genToken();
-        res.header('x-auth-token', token).send({ name: savedUser.name, email: savedUser.email })
+        res.header('x-auth-token', token).send({ message: 'you are logged in ...', token: token })
         //x-auth-token is naming convention for this field 
     }
 

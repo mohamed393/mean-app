@@ -1,0 +1,60 @@
+<!--To show and hide password first installation 
+npm install ngx-show-hide-password --save
+npm install @fortawesome/angular-fontawesome @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg-icons --save
+second module.ts
+import { ShowHidePasswordModule } from 'ngx-show-hide-password';
+third put tag 
+<show-hide-password>-->
+
+
+<div *ngIf="isnotvalid" class="alert alert-danger">Username or Email already Exists</div>
+<form class="form" #form="ngForm" (ngSubmit)="form.valid? onsubmit(form.value) : null">
+    <div class="form-group">
+        <label for="exampleInputEmail1">Username</label>
+        <input required minlength="5" maxlength="10" ngModel #username="ngModel" name="name" type="text"
+            class="form-control">
+
+        <div *ngIf="username.invalid && username.touched" class="alert alert-danger">
+            <div *ngIf="username.errors.required">UserName is required</div>
+            <div *ngIf="username.errors.minlength">UserName Should be
+                {{username.errors.minlength.requiredLength}} char at Least</div>
+            <div *ngIf="username.errors.maxlength">UserName Shouldn't be more than 10 char </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input required ngModel name="email" #email="ngModel" type="email" class="form-control" id="exampleInputEmail1"
+            aria-describedby="emailHelp" placeholder="Enter email">
+
+        <div *ngIf="email.invalid && email.touched" class="alert alert-danger">
+            <div *ngIf="email.errors.required">Email is Required</div>
+        </div>
+
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <show-hide-password size="md" btnStyle="primary" [btnOutline]="false">
+            <input required ngModel name="password" #password="ngModel" pattern=".{6,}" type="password"
+                class="form-control" id="exampleInputPassword1" placeholder="Password">
+        </show-hide-password>
+        <div *ngIf="password.invalid && password.touched" class="alert alert-danger">
+            <div *ngIf="password.errors.required">Password is Required</div>
+            <div *ngIf="password.errors.pattern">Password must Six or more characters</div>
+        </div>
+
+    </div>
+    <label> gender
+        <div class="radio">
+            <label>
+                <input type="radio" value="male" ngModel name="gender" #gender="ngModel">Male
+            </label>
+        </div>
+        <div class="radio">
+            <label>
+                <input type="radio" value="female" ngModel name="gender" #gender="ngModel">Female
+            </label>
+        </div>
+    </label><br>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

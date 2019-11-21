@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="col-sm-5">
+        <div *ngIf="error" class="alert alert-danger">Invalid Form</div>
+        <form #f="ngForm" (ngSubmit)="onSubmit(f.value)">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Enter Your Category</label>
+                <input ngModel name="nameofcat" #category="ngModel" type="text" class="form-control"
+                    aria-describedby="emailHelp" placeholder="Enter Category">
+            </div>
+            <div class="form-check">
+                <input ngModel name="user" #user="ngModel" [(ngModel)]="this.authService.currentUser()._id"
+                    type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Your Name</label>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+
+        </form>
+    </div>
+    <div class="col-sm-7">
+        <ul class="list-group">
+            <li *ngFor="let c of categories" class="list-group-item">
+                <h3><span style="color:cyan"> Category Name : </span> {{c.nameofcat}}</h3>
+                <h3> <span style="color:cyan"> Username : </span> {{c.user.name}} </h3>
+            </li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+        (click)="toggleCollapsed()">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent"
+        [ngClass]="{'collapse': collapsed, 'navbar-collapse': true}">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" routerLink='/' style="cursor: pointer">Oshope </a>
+            </li>
+            <li *ngIf="!this.authService.isLoggedin()" class="nav-item">
+                <a class="nav-link" routerLink='/login'>Login</a>
+            </li>
+            <li *ngIf="!this.authService.isLoggedin()" class="nav-item">
+                <a class="nav-link" routerLink='/newaccount'>Sign Up</a>
+            </li>
+            <li *ngIf="this.authService.currentUser()" ngbDropdown class="nav-item dropdown">
+                <a ngbDropdownToggle class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor: pointer">
+                    {{this.authService.currentUser().name}}
+                </a>
+                <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a *ngIf="this.authService.currentUser().isAdmin" style="cursor: pointer;"
+                        routerLink="/admin/manage" class="dropdown-item">Manage Products </a>
+                    <a *ngIf="this.authService.isLoggedin()" class="dropdown-item" style="cursor: pointer;"
+                        (click)="logout()">Log Out</a>
+                </div>
+            </li>
+
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
