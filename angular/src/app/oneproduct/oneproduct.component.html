@@ -1,0 +1,18 @@
+<div class="row">
+    <div class="col-8">
+        <div *ngIf="!this.authService.isLoggedin()" class="alert alert-danger">You can not By this product
+            without login
+        </div>
+
+        <app-card class="card" [image]="product.image" [name]="product.name"
+            [price]="product.price |currency:'USD':true" [showactios]="true" [category]="product.category">
+        </app-card>
+    </div>
+    <div class="col" class="desc">
+        <label>Quantity</label>
+        <input #quantity style="width: 230px" value="quantity.value" class="form-control" type="number"
+            placeholder="enter quantity you need " (keyup)="true">
+        <label>All Price</label>
+        <input *ngIf="quantity.value" [value]="quantity.value * product.price " class="form-control" type="number">
+    </div>
+</div>

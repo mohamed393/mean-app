@@ -25,6 +25,8 @@ import { NewproductComponent } from './admin/newproduct/newproduct.component';
 import { CategoryService } from './services/category.service';
 import { CustomFormsModule } from 'ng2-validation';
 import { CardComponent } from './card/card.component';
+import { ShoppingcartComponent } from './shoppingcart/shoppingcart.component';
+import { OneproductComponent } from './oneproduct/oneproduct.component';
 
 
 
@@ -40,6 +42,8 @@ import { CardComponent } from './card/card.component';
     CategoryComponent,
     NewproductComponent,
     CardComponent,
+    ShoppingcartComponent,
+    OneproductComponent,
 
   ],
   imports: [
@@ -57,9 +61,11 @@ import { CardComponent } from './card/card.component';
       , { path: 'newaccount', component: NewaccountComponent }
       , { path: 'admin/manage', component: ManageproductsComponent, canActivate: [AuthguardService, AdminguardService] }
       , { path: 'noaccess', component: NoaccessComponent }
+      , { path: 'shop-cart', component: ShoppingcartComponent }
+      , { path: 'oneproduct/:id', component: OneproductComponent }
       , { path: 'admin/manage/newcategory', component: CategoryComponent }
       , { path: 'admin/manage/newproduct', component: NewproductComponent }
-      ,{ path: 'admin/manage/newproduct/:id', component: NewproductComponent }
+      , { path: 'admin/manage/newproduct/:id', component: NewproductComponent }
     ])
 
   ],

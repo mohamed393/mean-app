@@ -17,6 +17,7 @@
     <table class="table">
         <thead>
             <tr>
+                <th>#</th>
                 <th>Title</th>
                 <th>Price</th>
                 <th></th>
@@ -24,7 +25,8 @@
 
             </tr>
         </thead>
-        <tr *ngFor="let p of fiteredProducts">
+        <tr *ngFor="let p of fiteredProducts;index as i">
+            <th style="color:dodgerblue">{{ i + 1 }}</th>
             <td>{{p.name}}</td>
             <td>{{p.price |currency}}</td>
             <td>
@@ -36,4 +38,5 @@
 
         </tr>
     </table>
+
 </div>

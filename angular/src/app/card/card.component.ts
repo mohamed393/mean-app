@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-card',
@@ -7,12 +8,13 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class CardComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
   }
   @Input() image;
   @Input() name;
   @Input() price;
-
+  @Input() showactios = false
+  @Input() category;
 }

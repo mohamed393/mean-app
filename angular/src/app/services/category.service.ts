@@ -21,6 +21,7 @@ export class CategoryService {
 
   getAllcategories() {
     return this.httpclient.get(this.url)
+
   }
 
 

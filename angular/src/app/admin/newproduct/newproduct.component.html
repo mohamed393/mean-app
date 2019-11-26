@@ -67,7 +67,8 @@ write ngModel  -->
             </div>
         </div>
     </div> -->
-    <!--Reusable component -->
+<!--Reusable component we make this *ngIf="product.image" because
+errors appear because image not found -->
     <div class="col-md-6">
         <app-card *ngIf="product.image" [image]="product.image" [name]="product.name"
             [price]="product.price |currency:'USD':true">
