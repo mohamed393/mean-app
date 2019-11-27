@@ -13,6 +13,6 @@
         <input #quantity style="width: 230px" value="quantity.value" class="form-control" type="number"
             placeholder="enter quantity you need " (keyup)="true">
         <label>All Price</label>
-        <input *ngIf="quantity.value" [value]="quantity.value * product.price " class="form-control" type="number">
+        <input [value]="quantity.value * product.price " class="form-control" type="number">
     </div>
 </div>

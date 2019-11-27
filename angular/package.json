@@ -25,6 +25,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.11.2",
     "@ng-bootstrap/ng-bootstrap": "^5.1.2",
     "bootstrap": "^4.3.1",
+    "ng-angular8-datatable": "^0.9.11",
     "ng2-validation": "^4.2.0",
     "ngx-show-hide-password": "^2.1.0",
     "rxjs": "~6.4.0",

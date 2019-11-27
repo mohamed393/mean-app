@@ -14,7 +14,8 @@
     <p>
         <input #query (keyup)="filter(query.value)" type="text" class="form-control" placeholder="Search">
     </p>
-    <table class="table">
+    <table class="table table-striped" [svData]="fiteredProducts" #sv="svDataTable" [svRowsOnPage]="5" svSortBy="name"
+        svSortOrder="asc">
         <thead>
             <tr>
                 <th>#</th>
@@ -25,18 +26,39 @@
 
             </tr>
         </thead>
-        <tr *ngFor="let p of fiteredProducts;index as i">
+        <!--Here sv.data is standard from package in datatable -->
+        <tr *ngFor="let item of sv.data;index as i">
             <th style="color:dodgerblue">{{ i + 1 }}</th>
-            <td>{{p.name}}</td>
-            <td>{{p.price |currency}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.price |currency}}</td>
             <td>
-                <a [routerLink]="['/admin/manage/newproduct',p._id]">Update</a>
+                <a [routerLink]="['/admin/manage/newproduct',item._id]">Update</a>
             </td>
-            <td><a (click)="deletepro(p)"><i style="cursor: pointer" class="far fa-trash-alt"></i>
-
-                </a></td>
+            <td><a (click)="deletepro(item)">
+                    <i style="cursor: pointer" class="far fa-trash-alt"></i>
+                </a>
+            </td>
 
         </tr>
+
+        <tfoot>
+            <tr>
+
+                <td colspan="4">
+                    <sv-bootstrap-paginator [rowsOnPageSet]="[5, 10,15,25]"></sv-bootstrap-paginator>
+                </td>
+            </tr>
+        </tfoot>
     </table>
 
 </div>
+
+
+<!--
+    svData: any[] - array of data to display in table
+    svRowsOnPage: number - number of rows should be displayed on page (default: 1000)
+    svActivePage: number - page number (default: 1)
+    svSortBy: any - sort by parameter
+    svSortOrder: string - sort order parameter, "asc" or "desc"
+
+-->

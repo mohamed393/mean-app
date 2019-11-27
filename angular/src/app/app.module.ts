@@ -6,7 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { ShowHidePasswordModule } from 'ngx-show-hide-password';
-
+import { DataTableModule } from 'ng-angular8-datatable';
 
 
 import { AppComponent } from './app.component';
@@ -50,6 +50,7 @@ import { OneproductComponent } from './oneproduct/oneproduct.component';
     BrowserModule,
     AppRoutingModule,
     NgbModule,
+    DataTableModule,
     CustomFormsModule,
     FormsModule,
     ReactiveFormsModule,
