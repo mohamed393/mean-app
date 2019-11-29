@@ -1,3 +1,3 @@
-# mean-app
+# Online Shop
 online shop
 Application made using html,css,bootstrap,Node js,Express js,MongoDB,Angular js
