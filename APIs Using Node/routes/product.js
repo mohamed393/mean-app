@@ -7,30 +7,47 @@ const authMiddleware = require('../middleware/authmiddleware');
 const adminmiddleware = require('../middleware/adminmiddleware');
 const router = express.Router();
 
-async function checkcategoryId(catid) {
-    const result = await Category.find({ _id: catid })
-    if (result.length == 1) {
-        return true
-    } else {
-        return false
-    }
-}
-
 
 router.get('/', async (req, res) => {
     try {
         const result = await Product.find()
+            .populate('category', '-_id nameofcat')
 
         res.send(result);
     } catch (error) {
         res.status(400).send({ message: 'Error' + error.message })
     }
 });
+async function returnId() {
+    const result = await Category.find()
+        .select('_id')
+    return result
+}
 
+router.get('/category', async (req, res) => {
+    try {
+        var x = await returnId()
+        console.log(x)
+        var last = [];
+
+        for (let i = 0; i < x.length; i++) {
+            let result = await Product.find({ category: x[i] }).limit(3);
+            last = last.concat(result);
+        }
+        console.log(last);
+        res.send(last)
+
+
+
+    } catch (error) {
+        res.status(400).send({ message: 'Error  ' + error.message })
+    }
+})
 router.get('/:id', async (req, res) => {
 
     try {
         const result = await Product.findById(req.params.id)
+            .populate('category', '-_id nameofcat')
         if (result) {
             res.send(result);
         } else {
@@ -78,7 +95,7 @@ router.put('/:id', [authMiddleware, adminmiddleware], async (req, res) => {
             selectedProduct.price = req.body.price;
             selectedProduct.category = req.body.category;
             const updatedProduct = await selectedProduct.save()
-            console.log('helloooooooo')
+            // console.log('helloooooooo')//
             res.send(updatedProduct);
         } else {
             res.status(404).send({ message: 'no product found' });

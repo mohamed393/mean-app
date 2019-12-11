@@ -20,30 +20,38 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     let op1 = this.productService.getAllproducts()
     let op2 = this.catService.getAllcategories()
-    let op3 = combineLatest([op1, op2])
-    op3.subscribe(data => {
+    let op3 = this.productService.getThreeProduct()
+    let op4 = combineLatest([op1, op2, op3])
+    op4.subscribe(data => {
       this.products = data[0] as any
       this.categories = data[1] as any
+      this.threeProducts = data[2] as any
       /*Here when filtering all products don't appear because we don't know 
       which observable will run first so we want to sure that products 
       already appeared by making subcribe observable of params 
       appeared after products observable*/
+      //filter//
       this.route.queryParamMap.subscribe(params => {
         this.category = params.get('cateory')
         this.filteredProducts = (this.category) ?
-          this.products.filter(p => p.category === this.category) :
-          this.products;
+          this.products.filter(p => p.category.nameofcat === this.category) :
+          this.threeProducts;
       })
 
     })
 
   }
+  //search if query true filteredProducts=search else filteredProducts=threeproducts- //
+  onkeyup(query) {
+    this.filteredProducts = (query) ?
+      this.products.filter(p => p.name.toLowerCase().includes(query.toLowerCase())) :
+      this.threeProducts
 
+  }
   category: string;
   products: any[] = []
   filteredProducts: any[] = []
   categories = [];
-
-
+  threeProducts: any[] = []
 
 }

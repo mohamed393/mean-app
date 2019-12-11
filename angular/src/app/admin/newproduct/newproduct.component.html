@@ -6,11 +6,12 @@ write ngModel  -->
 <div class="row">
     <div class="col-md-6">
         <div *ngIf="add" class="alert alert-success">Product added Successfully</div>
+
         <div *ngIf="f.invalid &&f.touched" class="alert alert-danger">Invalid Form</div>
         <form #f="ngForm" (ngSubmit)="f.valid? save(f.value):null">
             <div class="form-group">
                 <label for="title">Product Name</label>
-                <input #Pname="ngModel" [(ngModel)]="product.name" name="name" id="title" type="text"
+                <input #Pname="ngModel" (keyup)="onblur()" [(ngModel)]="product.name" name="name" id="title" type="text"
                     class="form-control" required>
                 <div *ngIf="Pname.touched && Pname.invalid" class="alert alert-danger">
                     <div *ngIf="Pname.errors.required">Product Name Required</div>
@@ -39,7 +40,7 @@ write ngModel  -->
                 <select #category="ngModel" [(ngModel)]="product.category" name="category" id="category"
                     class="form-control" required>
                     <option></option>
-                    <option *ngFor="let c of categories">{{c.nameofcat}}</option>
+                    <option [value]="c._id" *ngFor="let c of categories">{{c.nameofcat}}</option>
                 </select>
             </div>
             <div *ngIf="category.touched && category.invalid" class="alert alert-danger">Category is Required</div>
@@ -67,7 +68,7 @@ write ngModel  -->
             </div>
         </div>
     </div> -->
-<!--Reusable component we make this *ngIf="product.image" because
+    <!--Reusable component we make this *ngIf="product.image" because
 errors appear because image not found -->
     <div class="col-md-6">
         <app-card *ngIf="product.image" [image]="product.image" [name]="product.name"

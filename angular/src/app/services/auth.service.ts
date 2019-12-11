@@ -10,10 +10,13 @@ export class AuthService {
 
   constructor(private httpClient: HttpClient) { }
   url: string = "http://localhost:3000/api/auth";
+  ids: string[] = []
   isvalidSign(loginData, callback) {
     this.httpClient.post(this.url, loginData).subscribe(responseData => {
       if (responseData && (responseData as any).token) {
         localStorage.setItem('token', (responseData as any).token)
+
+
         callback(true)
       } else {
         callback(false)

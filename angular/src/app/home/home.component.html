@@ -1,7 +1,9 @@
 <div class="row">
+    <input id="search" #search class="form-control mr-sm-2" (keyup)="onkeyup(search.value)" type="search"
+        placeholder="Search" aria-label="Search">
     <div class="col-3">
         <div class="sticky-top">
-            <div style="margin: 20px" class="list-group">
+            <div style="margin: 20px" class="list-group" id="c">
                 <a class="list-group-item list-group-item-action" [class.active]="!category" routerLink="/">All
                     Categories</a>
 

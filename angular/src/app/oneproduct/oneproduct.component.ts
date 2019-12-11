@@ -17,10 +17,27 @@ export class OneproductComponent implements OnInit {
 
     this.productService.getoneProduct(this.id).subscribe(data => {
       this.product = data
+
+
     })
+
   }
   product = {}
   id = this.route.snapshot.paramMap.get('id')
+  cart: string
+  ids = []
+  onClick(id) {
+    if (localStorage.getItem('cart')) {
+      let x = localStorage.getItem('cart');
+      x += "," + id;
+      localStorage.setItem('cart', x);
+    } else {
+      let y = id;
+      localStorage.setItem('cart', y)
+
+    }
+  }
+
 
 
 }

@@ -5,7 +5,7 @@
         </div>
 
         <app-card class="card" [image]="product.image" [name]="product.name"
-            [price]="product.price |currency:'USD':true" [showactios]="true" [category]="product.category">
+            [price]="product.price |currency:'USD':true" [showactios]="true" [category]="product.category?.nameofcat">
         </app-card>
     </div>
     <div class="col" class="desc">
@@ -14,5 +14,9 @@
             placeholder="enter quantity you need " (keyup)="true">
         <label>All Price</label>
         <input [value]="quantity.value * product.price " class="form-control" type="number">
+        <button *ngIf="this.authService.isLoggedin()" type="button" class="btn btn-primary"
+            (click)="onClick(product._id);">Add To
+            Cart</button>
+
     </div>
 </div>

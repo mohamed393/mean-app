@@ -1,5 +1,6 @@
 <div class="row">
     <div class="col-sm-5">
+        <div *ngIf="added" class="alert alert-sucess">Category Added Successfully</div>
         <div *ngIf="error" class="alert alert-danger">Invalid Form</div>
         <form #f="ngForm" (ngSubmit)="onSubmit(f.value)">
             <div class="form-group">
@@ -8,12 +9,11 @@
                     aria-describedby="emailHelp" placeholder="Enter Category">
             </div>
             <div class="form-check">
-                <input ngModel name="user" #user="ngModel" [(ngModel)]="this.authService.currentUser()._id"
-                    type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">Your Name</label>
+                <input ngModel name="user" #user="ngModel" [ngModel]="userid" type="hidden" class="form-check-input"
+                    id="exampleCheck1">
             </div>
 
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Add</button>
 
         </form>
     </div>
@@ -25,4 +25,31 @@
             </li>
         </ul>
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </div>

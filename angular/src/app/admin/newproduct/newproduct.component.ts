@@ -54,7 +54,10 @@ export class NewproductComponent implements OnInit {
     }
     this.add = true
 
-    //this.router.navigate(['/admin/manage']) //
-
   }
+
+  onblur() {
+    this.add = false
+  }
+
 }

@@ -6,7 +6,7 @@ const router = express.Router();
 // At any api we request & response in json so at res.send i send message in json
 router.post('/', async (req, res) => {
     try {
-        const loggedUser = await User.findOne({ email: req.body.email }); // any find return the user
+        const loggedUser = await User.findOne({ email: req.body.email }); //  return the user
         if (loggedUser) {
             const validPass = await bcrypt.compare(req.body.password, loggedUser.password);
             if (validPass) {

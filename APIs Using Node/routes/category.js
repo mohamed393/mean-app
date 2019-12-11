@@ -40,10 +40,14 @@ router.post('/', [authMiddleware, adminmiddleware], async (req, res) => {
         const newCategory = new Category({
             nameofcat: req.body.nameofcat
             , user: req.body.user
+
         });
         const result = await newCategory.save()
         if (result) {
-            res.send(result);
+            let data = await Category.findById(result._id)
+                .populate('user', '-_id name');
+
+            res.send(data);
         } else {
             res.status(404).send({ message: 'no data saved' })
         }

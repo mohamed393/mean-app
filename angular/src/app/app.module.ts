@@ -60,13 +60,26 @@ import { OneproductComponent } from './oneproduct/oneproduct.component';
       { path: '', component: HomeComponent }
       , { path: 'login', component: LoginComponent }
       , { path: 'newaccount', component: NewaccountComponent }
-      , { path: 'admin/manage', component: ManageproductsComponent, canActivate: [AuthguardService, AdminguardService] }
       , { path: 'noaccess', component: NoaccessComponent }
       , { path: 'shop-cart', component: ShoppingcartComponent }
       , { path: 'oneproduct/:id', component: OneproductComponent }
-      , { path: 'admin/manage/newcategory', component: CategoryComponent }
-      , { path: 'admin/manage/newproduct', component: NewproductComponent }
-      , { path: 'admin/manage/newproduct/:id', component: NewproductComponent }
+      , {
+        path: 'admin/manage', component: ManageproductsComponent
+        , canActivate: [AuthguardService, AdminguardService]
+      }
+      , {
+        path: 'admin/manage/newcategory', component: CategoryComponent
+        , canActivate: [AuthguardService, AdminguardService]
+      }
+      , {
+        path: 'admin/manage/newproduct', component: NewproductComponent
+        , canActivate: [AuthguardService, AdminguardService]
+      }
+      , {
+        path: 'admin/manage/newproduct/:id', component: NewproductComponent
+        , canActivate: [AuthguardService, AdminguardService]
+      }
+
     ])
 
   ],

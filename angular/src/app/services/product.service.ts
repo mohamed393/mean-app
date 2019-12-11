@@ -32,6 +32,9 @@ export class ProductService {
   getoneProduct(id) {
     return this.httpClient.get(this.url + '/' + id)
   }
+  getThreeProduct() {
+    return this.httpClient.get(this.url + '/category')
+  }
   updateProduct(id, product) {
     let headers = this.gentoken()
     return this.httpClient.put(this.url + '/' + id, product, { headers })

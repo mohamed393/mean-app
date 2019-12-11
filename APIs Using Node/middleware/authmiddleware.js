@@ -9,10 +9,10 @@ function authmiddleware(req, res, next) {
                 req.user = userDate;  // pass userData to the Api that will use this middleware function
                 next(); //means go to the wanted api
             } else {
-                res.status(400).send('invalid token');
+                res.status(400).send({ message: 'invalid token' });
             }
         } else {
-            res.status(401).send('Token not Provided');
+            res.status(401).send({ message: 'Token not Provided' });
         }
 
 
