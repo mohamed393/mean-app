@@ -3,6 +3,8 @@ import { ProductService } from '../services/product.service';
 import { CategoryService } from '../services/category.service';
 import { ActivatedRoute } from '@angular/router';
 import { combineLatest } from 'rxjs'
+import { NgxSpinnerService } from "ngx-spinner";
+
 
 
 @Component({
@@ -12,12 +14,19 @@ import { combineLatest } from 'rxjs'
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private productService: ProductService,
+  constructor(private productService: ProductService, private spinner: NgxSpinnerService,
     private catService: CategoryService, private route: ActivatedRoute) {
 
   }
 
   ngOnInit() {
+    this.spinner.show();
+    setTimeout(() => {
+      /** spinner ends after 5 seconds */
+      this.spinner.hide();
+    }, 5000);
+
+
     let op1 = this.productService.getAllproducts()
     let op2 = this.catService.getAllcategories()
     let op3 = this.productService.getThreeProduct()

@@ -26,16 +26,32 @@ export class OneproductComponent implements OnInit {
   id = this.route.snapshot.paramMap.get('id')
   cart: string
   ids = []
+  uniqueid: boolean;
+  y: boolean;
+
   onClick(id) {
     if (localStorage.getItem('cart')) {
       let x = localStorage.getItem('cart');
-      x += "," + id;
+      if (x.includes(id)) {
+        this.uniqueid = true
+      } else {
+        x += "," + id;
+      }
       localStorage.setItem('cart', x);
     } else {
       let y = id;
       localStorage.setItem('cart', y)
 
     }
+  }
+  refresh() {
+    if (this.uniqueid) {
+      this.y = this.uniqueid
+    } else {
+      window.location.reload();
+
+    }
+
   }
 
 

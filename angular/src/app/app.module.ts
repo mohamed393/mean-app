@@ -7,6 +7,8 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { ShowHidePasswordModule } from 'ngx-show-hide-password';
 import { DataTableModule } from 'ng-angular8-datatable';
+import { NgxSpinnerModule } from "ngx-spinner";
+
 
 
 import { AppComponent } from './app.component';
@@ -50,6 +52,7 @@ import { OneproductComponent } from './oneproduct/oneproduct.component';
     BrowserModule,
     AppRoutingModule,
     NgbModule,
+    NgxSpinnerModule,
     DataTableModule,
     CustomFormsModule,
     FormsModule,
