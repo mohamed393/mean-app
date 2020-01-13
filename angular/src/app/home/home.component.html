@@ -13,7 +13,7 @@
                     Categories</a>
 
                 <a *ngFor="let c of categories" class="list-group-item list-group-item-action" routerLink="/"
-                    [queryParams]="{ cateory : c.nameofcat }" [class.active]="category===c.nameofcat">
+                    [queryParams]="{category : c.nameofcat }" [class.active]="category===c.nameofcat">
                     {{c.nameofcat}}
 
                 </a>

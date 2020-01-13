@@ -8,6 +8,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ShowHidePasswordModule } from 'ngx-show-hide-password';
 import { DataTableModule } from 'ng-angular8-datatable';
 import { NgxSpinnerModule } from "ngx-spinner";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 
 
@@ -29,6 +31,8 @@ import { CustomFormsModule } from 'ng2-validation';
 import { CardComponent } from './card/card.component';
 import { ShoppingcartComponent } from './shoppingcart/shoppingcart.component';
 import { OneproductComponent } from './oneproduct/oneproduct.component';
+import { OrdersComponent } from './admin/orders/orders.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 
 
@@ -46,12 +50,15 @@ import { OneproductComponent } from './oneproduct/oneproduct.component';
     CardComponent,
     ShoppingcartComponent,
     OneproductComponent,
+    CheckoutComponent,
+    OrdersComponent
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
+    BrowserAnimationsModule,
     NgxSpinnerModule,
     DataTableModule,
     CustomFormsModule,
@@ -66,8 +73,12 @@ import { OneproductComponent } from './oneproduct/oneproduct.component';
       , { path: 'noaccess', component: NoaccessComponent }
       , { path: 'shop-cart', component: ShoppingcartComponent }
       , { path: 'oneproduct/:id', component: OneproductComponent }
+      , { path: 'checkout', component: CheckoutComponent }
       , {
         path: 'admin/manage', component: ManageproductsComponent
+        , canActivate: [AuthguardService, AdminguardService]
+      }, {
+        path: 'admin/manage/orders', component: OrdersComponent
         , canActivate: [AuthguardService, AdminguardService]
       }
       , {

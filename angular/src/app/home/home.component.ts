@@ -4,6 +4,7 @@ import { CategoryService } from '../services/category.service';
 import { ActivatedRoute } from '@angular/router';
 import { combineLatest } from 'rxjs'
 import { NgxSpinnerService } from "ngx-spinner";
+import { delay } from 'rxjs/operators';
 
 
 
@@ -21,17 +22,13 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.spinner.show();
-    setTimeout(() => {
-      /** spinner ends after 5 seconds */
-      this.spinner.hide();
-    }, 5000);
 
 
     let op1 = this.productService.getAllproducts()
     let op2 = this.catService.getAllcategories()
     let op3 = this.productService.getThreeProduct()
     let op4 = combineLatest([op1, op2, op3])
-    op4.subscribe(data => {
+    op4.pipe(delay(3000)).subscribe(data => {
       this.products = data[0] as any
       this.categories = data[1] as any
       this.threeProducts = data[2] as any
@@ -41,13 +38,13 @@ export class HomeComponent implements OnInit {
       appeared after products observable*/
       //filter//
       this.route.queryParamMap.subscribe(params => {
-        this.category = params.get('cateory')
+        this.category = params.get('category');
         this.filteredProducts = (this.category) ?
           this.products.filter(p => p.category.nameofcat === this.category) :
           this.threeProducts;
       })
 
-    })
+    }, err => console.log(err.message), () => this.spinner.hide())
 
   }
   //search if query true filteredProducts=search else filteredProducts=threeproducts- //

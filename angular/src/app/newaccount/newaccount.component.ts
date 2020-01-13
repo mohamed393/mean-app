@@ -12,15 +12,22 @@ export class NewaccountComponent implements OnInit {
 
   ngOnInit() {
   }
+  showpreloader: boolean
   isnotvalid = false;
   onsubmit(value) {
-    this.userService.createNewUser(value, isvalid => {
-      if (isvalid) {
-        this.router.navigate(['/'])
-        return true
-      } else {
-        this.isnotvalid = true
-      }
-    })
+    this.showpreloader = true
+    setTimeout(() => {
+      this.userService.createNewUser(value, isvalid => {
+        if (isvalid) {
+          this.router.navigate(['/'])
+          return true
+        } else {
+          this.isnotvalid = true
+          this.showpreloader = false
+
+        }
+      })
+
+    }, 3000);
   }
 }

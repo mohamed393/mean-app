@@ -31,6 +31,9 @@
                 <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a *ngIf="this.authService.currentUser().isAdmin" style="cursor: pointer;"
                         routerLink="/admin/manage" class="dropdown-item">Manage Products </a>
+                    <a *ngIf="this.authService.currentUser().isAdmin" style="cursor: pointer;"
+                        routerLink="/admin/manage/orders" class="dropdown-item">Manage Orders </a>
+
                     <a *ngIf="this.authService.isLoggedin();" class="dropdown-item" style="cursor: pointer;"
                         (click)="logout();refresh()">Log Out</a>
                 </div>

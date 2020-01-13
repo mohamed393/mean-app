@@ -12,8 +12,11 @@ export class NavComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) { }
   items = []
   ngOnInit() {
-    let x = localStorage.getItem('cart');
-    this.items = x.split(",");// convert string to array//
+    if (localStorage.getItem('cart')) {
+      let x = localStorage.getItem('cart');
+      this.items = x.split(",");// convert string to array//
+
+    }
   }
 
   collapsed = true;

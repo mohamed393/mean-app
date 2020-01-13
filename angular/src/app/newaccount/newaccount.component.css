@@ -1,3 +1,8 @@
 .form{
     padding:15px
 }
+.spinner-border{
+    margin-left: 400px;
+    width: 100px;
+    height: 100px;
+}

@@ -8,7 +8,11 @@ third put tag
 
 
 <div *ngIf="isnotvalid" class="alert alert-danger">Username or Email already Exists</div>
+<div *ngIf="showpreloader" class="spinner-border text-primary" role="status">
+    <span class="sr-only">Loading...</span>
+</div>
 <form class="form" #form="ngForm" (ngSubmit)="form.valid? onsubmit(form.value) : null">
+
     <div class="form-group">
         <label for="exampleInputEmail1">Username</label>
         <input required minlength="5" maxlength="10" ngModel #username="ngModel" name="name" type="text"
