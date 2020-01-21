@@ -1,39 +1,63 @@
-<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-scale-multiple">
-    <p style="font-size: 20px; color: white">Loading...</p>
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple"
+>
+  <p style="font-size: 20px; color: white">Loading...</p>
 </ngx-spinner>
+<h1>Dear Visitor Welcome To Your Online Shope</h1>
 
 <div class="row">
+  <input
+    id="search"
+    #search
+    class="form-control mr-sm-2"
+    (keyup)="onkeyup(search.value)"
+    type="search"
+    placeholder="Search"
+    aria-label="Search"
+  />
+  <div class="col-3">
+    <div class="sticky-top">
+      <div style="margin: 20px" class="list-group" id="c">
+        <a
+          class="list-group-item list-group-item-action"
+          [class.active]="!category"
+          routerLink="/"
+          >All Categories</a
+        >
 
-    <input id="search" #search class="form-control mr-sm-2" (keyup)="onkeyup(search.value)" type="search"
-        placeholder="Search" aria-label="Search">
-    <div class="col-3">
-        <div class="sticky-top">
-            <div style="margin: 20px" class="list-group" id="c">
-                <a class="list-group-item list-group-item-action" [class.active]="!category" routerLink="/">All
-                    Categories</a>
-
-                <a *ngFor="let c of categories" class="list-group-item list-group-item-action" routerLink="/"
-                    [queryParams]="{category : c.nameofcat }" [class.active]="category===c.nameofcat">
-                    {{c.nameofcat}}
-
-                </a>
-            </div>
-        </div>
+        <a
+          *ngFor="let c of categories"
+          class="list-group-item list-group-item-action"
+          routerLink="/"
+          [queryParams]="{ category: c.nameofcat }"
+          [class.active]="category === c.nameofcat"
+        >
+          {{ c.nameofcat }}
+        </a>
+      </div>
     </div>
-    <!--Card -->
-    <div class="col">
-        <div class="row">
-            <ng-container *ngFor="let p of filteredProducts;let i=index">
-                <div class="col">
-                    <app-card class="card" [image]="p.image" [name]="p.name" [price]="p.price |currency:'USD':true"
-                        [routerLink]="['/oneproduct',p._id]">
-                    </app-card>
-                </div>
-                <div *ngIf="(i+1)%3===0" class="w-100"></div>
-            </ng-container>
+  </div>
+  <!--Card -->
+  <div class="col">
+    <div class="row">
+      <ng-container *ngFor="let p of filteredProducts; let i = index">
+        <div class="col">
+          <app-card
+            class="card"
+            [image]="p.image"
+            [name]="p.name"
+            [price]="p.price | currency: 'USD':true"
+            [routerLink]="['/oneproduct', p._id]"
+          >
+          </app-card>
         </div>
+        <div *ngIf="(i + 1) % 3 === 0" class="w-100"></div>
+      </ng-container>
     </div>
+  </div>
 </div>
-
 
 <!--sticky-top makes Position an element at the top of the viewport,-->

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { OrdersService } from 'src/app/services/orders.service';
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.component.html',
@@ -7,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrdersComponent implements OnInit {
 
-  constructor() { }
+  constructor(private orderService: OrdersService) { }
 
   ngOnInit() {
-  }
+    this.orderService.getAllOrders().subscribe(responseData => {
+      this.orders = responseData as any
 
+    })
+  }
+  orders = []
 }

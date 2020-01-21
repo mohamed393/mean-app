@@ -33,6 +33,7 @@ import { ShoppingcartComponent } from './shoppingcart/shoppingcart.component';
 import { OneproductComponent } from './oneproduct/oneproduct.component';
 import { OrdersComponent } from './admin/orders/orders.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { OrdersService } from './services/orders.service';
 
 
 
@@ -97,7 +98,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
     ])
 
   ],
-  providers: [UserService, AuthService, AuthguardService, AdminguardService, CategoryService],
+  providers: [UserService, AuthService, AuthguardService, AdminguardService, CategoryService, OrdersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

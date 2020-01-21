@@ -1,22 +1,46 @@
 <div class="row">
-    <div *ngIf="y" class="alert alert-success">This product is Already Added before into You Cart</div>
-    <div class="col-8">
-        <div *ngIf="!this.authService.isLoggedin()" class="alert alert-danger">You can not By this product
-            without login
-        </div>
+  <div *ngIf="y" class="alert alert-success">
+    This product is Already Added before into You Cart
+  </div>
+  <div class="col-8">
+    <div *ngIf="!this.authService.isLoggedin()" class="alert alert-danger">
+      You can not Buy this product without login
+    </div>
 
-        <app-card class="card" [image]="product.image" [name]="product.name"
-            [price]="product.price |currency:'USD':true" [showactios]="true" [category]="product.category?.nameofcat">
-        </app-card>
-    </div>
-    <div class="col" class="desc">
-        <label>Quantity</label>
-        <input #quantity style="width: 230px" value="quantity.value" class="form-control" type="number"
-            placeholder="enter quantity you need " (keyup)="true">
-        <label>All Price</label>
-        <input [value]="quantity.value * product.price " class="form-control" type="number">
-        <button *ngIf="this.authService.isLoggedin()" type="button" class="btn btn-primary"
-            (click)="onClick(product._id);refresh()">Add To
-            Cart</button>
-    </div>
+    <app-card
+      class="card"
+      [image]="product.image"
+      [name]="product.name"
+      [price]="product.price | currency: 'USD':true"
+      [showactios]="true"
+      [category]="product.category?.nameofcat"
+    >
+    </app-card>
+  </div>
+  <div class="col" class="desc">
+    <label>Quantity</label>
+    <input
+      #quantity
+      style="width: 230px"
+      value="quantity.value"
+      class="form-control"
+      type="number"
+      placeholder="enter quantity you need "
+      (keyup)="(true)"
+    />
+    <label>All Price</label>
+    <input
+      [value]="quantity.value * product.price"
+      class="form-control"
+      type="number"
+    />
+    <button
+      *ngIf="this.authService.isLoggedin()"
+      type="button"
+      class="btn btn-primary"
+      (click)="onClick(product._id); refresh()"
+    >
+      Add To Cart
+    </button>
+  </div>
 </div>
